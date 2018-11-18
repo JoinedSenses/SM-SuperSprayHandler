@@ -8,7 +8,7 @@ https://forums.alliedmods.net/showthread.php?t=281488
 **The Complete Spray Management Plugin**  
 
 
-**Credits:** This plugin is a combination of Shavit's Spray Manager plugin, which I have fixed up, and all the hard work of Nican132, CptMoore, and Lebson506th's Spray Trace plugin, which I have also fixed up. You could consider this a redux of both plugins.  
+**Credits:** This plugin is a combination of Shavit's Spray Manager plugin, which I (TheWreckingCrew6) have fixed up, and all the hard work of Nican132, CptMoore, and Lebson506th's Spray Trace plugin, which I have also fixed up. You could consider this a redux of both plugins.  
 
 ## Features:  
 * Trace the owner of a spray  
