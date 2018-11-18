@@ -1,5 +1,5 @@
-#### Syntax update of Super Spray Handler  
-**Not thoroughly tested. Will maintain this plugin and bugfix if errors arise.**  
+### Syntax update of Super Spray Handler  
+*Not thoroughly tested. Will maintain this plugin and bugfix if errors arise.*  
 https://forums.alliedmods.net/showthread.php?t=281488
 
 ------------------------
