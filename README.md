@@ -31,14 +31,14 @@ https://forums.alliedmods.net/showthread.php?t=281488
 * **sm_removespray** - Remove the spray you're looking at and open the punishment menu.
 * **sm_qremovespray** - Removes the spray you're looking at and doesn't open the punishment menu.
 * **sm_removeallsprays** - Removes all the sprays on the map at once.
-* **sm_adminspray <Steam_ID/Name>** - Spray the persons spray where you are looking.
+* **sm_adminspray _<Steam_ID/Name>_** - Spray the persons spray where you are looking.
 * **sm_sprayban** - Ban the user from spraying. Ever.
-* **sm_sprayunban <Steam_ID/Name>** - Unban a Spray Banned user.
-* **sm_offlinesprayban <Steam_ID> [Name]** - Spray ban someone not on the server.
+* **sm_sprayunban _<Steam_ID/Name>_** - Unban a Spray Banned user.
+* **sm_offlinesprayban _<Steam_ID> [Name]_** - Spray ban someone not on the server.
 * **sm_spraybans** - Shows a list of currently connected spray banned players.
   
   
-### \*\*\*All CVars are Automatically generated to "tf/cfg/sourcemod/plugin.ssh.cfg"***  
+### \*\*\*_All CVars are Automatically generated to "tf/cfg/sourcemod/plugin.ssh.cfg"_***  
 ## Convars:  
 * **sm_ssh_enabled** - Defaults to 1, set to 0 to disable SSH.
 * **sm_ssh_overlap** - Enable preventing users from spraying their sprays ontop of other sprays.
