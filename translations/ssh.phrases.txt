@@ -1,0 +1,468 @@
+"Phrases"
+{
+	//Punishment menu title
+	//{Name} ({SteamID}). Last Logo sprayed {#Seconds}s ago.
+	"Title"
+	{
+		"#format"		"{1:s},{2:s},{3:d}"
+		"en"			"{1} ({2}). Last Logo sprayed {3}s ago."
+	}
+
+	//Admin spray menu title
+	"Admin Spray Menu"
+	{
+		"en"			"Select a player"
+	}
+
+	//Punishment option
+	"Warn"
+	{
+		"en"			"Warn Player"
+	}
+
+	//Punishment option
+	"SlapWarn"
+	{
+		"#format"		"{1:d}"
+		"en"			"Slap and warn Player for {1} dmg"
+	}
+
+	//Punishment option
+	"Slay"
+	{
+		"en"			"Slay Player"
+	}
+
+	//Punishment option
+	//Burn Player for {#of Seconds} seconds
+	"BurnWarn"
+	{
+		"#format"		"{1:d}"
+		"en"			"Burn Player for {1} seconds"
+	}
+
+	//Punishment option
+	"Freeze"
+	{
+		"en"			"Freeze"
+	}
+
+	//Punishment option
+	"Beacon"
+	{
+		"en"			"Beacon"
+	}
+
+	//Punishment option
+	"FreezeBomb"
+	{
+		"en"			"Freeze Bomb"
+	}
+
+	//Punishment option
+	"FireBomb"
+	{
+		"en"			"Fire Bomb"
+	}
+
+	//Punishment option
+	"TimeBomb"
+	{
+		"en"			"Time Bomb"
+	}
+
+	//Punishment option
+	"Drug"
+	{
+		"en"			"Drug"
+	}
+
+	//Punishment option
+	"Kick"
+	{
+		"en"			"Kick Player"
+	}
+
+	//Punishment option
+	//Ban Player for {#Minutes} minute(s)
+	"Ban"
+	{
+		"en"			"Ban Player"
+	}
+
+	//Punishment option
+	"PBan"
+	{
+		"en"			"Ban Player permanently"
+	}
+	
+	//Punishment option
+	"SPBan"
+	{
+		"en"			"Ban Player from Spraying"
+	}
+
+	//Menu option
+	"Trace"
+	{
+		"en"			"Trace Spray"
+	}
+
+	//Menu option
+	"Remove"
+	{
+		"en"			"Remove Spray"
+	}
+	
+	//Menu option
+	"QuickRemove"
+	{
+		"en"			"Quickly Remove Spray"
+	}
+
+	//Menu option
+	"AdminSpray"
+	{
+		"en"			"Admin Spray"
+	}
+
+	//Warning
+	"Please change"
+	{
+		"en"			"Please change your spray logo, it is inappropriate."
+	}
+
+	//Kick reason
+	"Bad Spray Logo"
+	{
+		"en"			"Bad Spray Logo"
+	}
+
+	//Command reply
+	"Could Not Find"
+	{
+		"en"			"Could not find target"
+	}
+
+	//Punishment reply
+	//Could not find player {Name} ({SteamID})
+	"Could Not Find Name ID"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Could not find player {1} ({2})"
+	}
+
+	//Punishment reply
+	//Could not find player {Name}
+	"Could Not Find Name"
+	{
+		"#format"		"{1:s}"
+		"en"			"Could not find player {1}"
+	}
+
+	//Punishment annoucement
+	//Warned player {Name} ({SteamID})
+	"Warned"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Warned player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Slapped and warned player {Name} ({SteamID}) for {#Damage} dmg
+	"Slapped And Warned"
+	{
+		"#format"		"{1:s},{2:s},{3:d}"
+		"en"			"Slapped and warned player {1} ({2}) for {3} dmg"
+	}
+
+	//Punishment annoucement
+	//Slayed and warned player {Name} ({SteamID})
+	"Slayed And Warned"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Slayed and warned player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Burnt and warned player {Name} ({SteamID})
+	"Burnt And Warned"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Burnt and warned player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Froze player {Name} ({SteamID})
+	"Froze"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Froze player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Put a beacon on player {Name} ({SteamID})
+	"Beaconed"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Put a beacon on player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Put a freeze bomb on player {Name} ({SteamID})
+	"FreezeBombed"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Put a freeze bomb on player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Put a fire bomb on player {Name} ({SteamID})
+	"FireBombed"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Put a fire bomb on player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Put a time bomb on player {Name} ({SteamID})
+	"TimeBombed"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Put a time bomb on player {1} ({2})"
+	}
+
+	//Punishment message
+	//Drugged player {1} ({2})
+	"Drugged"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Drugged player {1} ({2})"
+	}
+
+	//Punishment annoucement
+	//Kicked player {Name} ({SteamID}) for a bad spray logo
+	"Kicked"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Kicked player {1} ({2}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//"{AdminName} banned player {Name} ({SteamID}) for {#Minutes} minutes for a bad spray logo"
+	"Banned"
+	{
+		"#format"		"{1:s},{2:s},{3:s},{4:d}"
+		"en"			"{1} banned player {2} ({3}) for {4} minutes for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//"{AdminName} banned player {Name} ({SteamID}) for {#Minutes} minutes with {External Ban Name} for a bad spray logo"
+	"EBanned"
+	{
+		"#format"		"{1:s},{2:s},{3:s},{4:d},{5:s}"
+		"en"			"{1} banned player {2} ({3}) for {4} minutes with {5} for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//"{AdminName} permanently banned player {Name} ({SteamID}) for a bad spray logo"
+	"PBanned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} permanently banned player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//"{AdminName} permanently banned player {Name} ({SteamID}) for a bad spray logo with {External Ban Name}"
+	"EPBanned"
+	{
+		"#format"		"{1:s},{2:s},{3:s},{4:s}"
+		"en"			"{1} permanently banned player {2} ({3}) for a bad spray logo with {4}"
+	}
+	
+	//Punishment annoucement
+	//"{AdminName} Spray banned player {Name} ({SteamID}) for a bad spray logo"
+	"SPBanned"
+	{
+		"#format"	"{1:s},{2:s},{3:s}"
+		"en"	"{1} Spray banned player {2} ({3}) for a bad spray logo"
+	}
+
+	//Command reply
+	//Sprayed by: {Name} ({SteamID})
+	"Sprayed"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"Sprayed by: {1} ({2})"
+	}
+
+	//Command reply
+	//Sprayed by: {Name}
+	"Sprayed Name"
+	{
+		"#format"		"{1:s}"
+		"en"			"Sprayed by: {1}"
+	}
+
+	//Command reply
+	//{AdminName} sprayed {Target}'s spray
+	"Admin Sprayed"
+	{
+		"#format"		"{1:N},{2:N}"
+		"en"			"{1} sprayed {2}'s spray"
+	}
+
+	//Command Reply
+	"Cannot Spray"
+	{
+		"en"			"Error: Cannot spray the target's spray"
+	}
+
+	//Command reply
+	//Spray by {Name} ({SteamID}), {#Seconds}s ago.
+	"Spray By"
+	{
+		"#format"		"{1:s},{2:s},{3:d}"
+		"en"			"Spray by {1} ({2}), {3} seconds ago"
+	}
+
+	//Command reply
+	"No Spray"
+	{
+		"en"			"No spray were found on where you are looking at"
+	}
+	
+	//Command reply
+	"No Sprays"
+	{
+		"en"			"No Sprays have been sprayed."
+	}
+
+	//Command reply
+	//Spray from {Name} ({SteamID}) has been removed by {AdminName}
+	"Spray Removed"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"Spray from {1} ({2}) has been removed by {3}"
+	}
+	
+	//Command reply
+	//All Sprays have been removed by {AdminName}.
+	"Sprays Removed"
+	{
+		"#format"		"{1:s}"
+		"en"			"All Sprays have been removed by {1}"
+	}
+
+	//Punishment logging
+	//{AdminName} warned player {Name} ({SteamID})
+	"Log Warned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} warned player {2} ({3})"
+	}
+
+	//Punishment logging
+	//{AdminName} slapped and warned player {Name} ({SteamID})
+	"Log Slapped And Warned"
+	{
+		"#format"		"{1:s},{2:s},{3:s},{4:d}"
+		"en"			"{1} slapped and warned player {2} ({3}) for {4} dmg"
+	}
+
+	//Punishment logging
+	//{AdminName} slayed and warned player {Name} ({SteamID})
+	"Log Slayed And Warned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} slayed and warned player {2} ({3})"
+	}
+
+	//Punishment logging
+	//{AdminName} burnt and warned player {Name} ({SteamID})
+	"Log Burnt And Warned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} burnt and warned player {2} ({3})"
+	}
+
+	//Punishment annoucement
+	//{AdminName} froze player {Name} ({SteamID}) for a bad spray logo
+	"Log Froze"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} froze player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//{AdminName} put a beacon on player {Name} ({SteamID}) for a bad spray logo
+	"Log Beaconed"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} put a beacon on player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//{AdminName} put a freeze bomb on player {Name} ({SteamID}) for a bad spray logo
+	"Log FreezeBombed"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} put a freeze bomb on player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//{AdminName} put a fire bomb on player {Name} ({SteamID}) for a bad spray logo
+	"Log FireBombed"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} put a fire bomb on player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment annoucement
+	//{AdminName} put a time bomb on player {Name} ({SteamID}) for a bad spray logo
+	"Log TimeBombed"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} put a time bomb on player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment message
+	//{AdminName} drugged player {Name} ({SteamID}) for a bad spray logo
+	"Log Drugged"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} drugged player {2} ({3}) for a bad spray logo"
+	}
+
+	//Punishment logging
+	//{AdminName} kicked player {Name} ({SteamID}) for a bad spray logo
+	"Log Kicked"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} kicked player {2} ({3}) for a bad spray logo"
+	}
+	
+	//Punishment logging
+	//{AdminName} Spray Banned {Name} ({SteamID}) for a bad spray logo
+	"Log SPBanned"
+	{
+		"#format"		"{1:s},{2:s},{3:s}"
+		"en"			"{1} Spray banned player {2} ({3}) for a bad spray logo."
+	}
+
+	//Command fail reply
+	//{AdminName} tried to punish {OtherAdminName} but failed. {OtherAdminName} has higher immunity.
+	"Admin Immune Log"
+	{
+		"#format"		"{1:s},{2:s}"
+		"en"			"{1} tried to punish {2} but failed. {2} has higher immunity."
+	}
+
+	//Command fail reply
+	//You tried to punish {OtherAdminName} but failed. {OtherAdminName} has higher immunity.
+	"Admin Immune"
+	{
+		"#format"		"{1:s}"
+		"en"			"You tried to punish {1} but failed. {1} has higher immunity."
+	}
+}
