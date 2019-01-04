@@ -189,7 +189,7 @@ public void OnPluginStart() {
 	GetGameFolderName(gamename, sizeof(gamename));
 
 	//Checks for support of the HUD in current server, if not supported, changes sm_ssh_location to 1.
-	g_bCanUseHUD = StrEqual(gamename,"tf", false) || StrEqual(gamename,"hl2mp", false) || StrEqual(gamename,"sourceforts", false) || StrEqual(gamename,"obsidian", false) || StrEqual(gamename,"left4dead", false) || StrEqual(gamename,"l4d", false);
+	g_bCanUseHUD = StrEqual(gamename,"tf", false) || StrEqual(gamename,"hl2mp", false)  || StrEqual(gamename, "synergy", false) || StrEqual(gamename,"sourceforts", false) || StrEqual(gamename,"obsidian", false) || StrEqual(gamename,"left4dead", false) || StrEqual(gamename,"l4d", false);
 	if (g_bCanUseHUD) {
 		g_hHUD = CreateHudSynchronizer();
 	}
