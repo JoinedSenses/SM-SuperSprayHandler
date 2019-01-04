@@ -11,7 +11,7 @@
 #pragma semicolon 1
 
 //Used to easily access my cvars out of an array.
-#define PLUGIN_VERSION "1.3.0"
+#define PLUGIN_VERSION "1.3.1"
 enum {
 	  ENABLED = 0
 	, ANTIOVERLAP
@@ -70,7 +70,7 @@ int g_iHudLoc;
 Handle g_hHUD = null;
 
 //Used later to decide what type of ban to place
-Handle g_hExternalBan = null;
+ConVar g_hExternalBan = null;
 
 int g_iConnections;
 
@@ -487,13 +487,14 @@ public void OnAdminMenuReady(Handle aTopMenu) {
 }
 
 //When we have our admin menu created, lets make our custom category.
-public void OnAdminMenuCreated(Handle topmenu) {
+public void OnAdminMenuCreated(Handle aTopMenu) {
+	TopMenu topmenu = TopMenu.FromHandle(aTopMenu);
 	/* Block us from being called twice */
 	if (topmenu == g_hAdminMenu && menu_category != INVALID_TOPMENUOBJECT) {
 		return;
 	}
 
-	menu_category = AddToTopMenu(topmenu, "Spray Commands", TopMenuObject_Category, CategoryHandler, INVALID_TOPMENUOBJECT);
+	menu_category = topmenu.AddCategory("Spray Commands", CategoryHandler);
 }
 
 /******************************************************************************************
@@ -528,11 +529,11 @@ public void SQL_ConnectorCallback(Database db, const char[] error, any data) {
 
 		return;
 	}
-	DBDriver dbDriver;
+	g_Database = db;
+
+	DBDriver dbDriver = g_Database.Driver;
 	char driver[16];
 	dbDriver.GetIdentifier(driver, sizeof(driver));
-
-	g_Database = db;
 
 	if (StrEqual(driver, "mysql", false)) {
 		SQL_LockDatabase(g_Database);
@@ -994,7 +995,7 @@ public int MenuHandler_ListOptions(Menu menu, MenuAction action, int param1, int
 				default: {
 					PrintToChat(param1, "[SSH] Somehow you fucked up.");
 				}
-			}		
+			}
 		}
 		case MenuAction_End: {
 			delete menu;
@@ -1100,9 +1101,9 @@ public int MenuHandler_SprayBans(Menu menu, MenuAction action, int param1, int p
 			}
 		}
 		case MenuAction_Cancel: {
-					if (param2 == MenuCancel_ExitBack) {
-			DisplayListOptionsMenu(param1);
-		}
+			if (param2 == MenuCancel_ExitBack) {
+				DisplayListOptionsMenu(param1);
+			}
 		}
 		case MenuAction_End: {
 			delete menu;
@@ -1293,7 +1294,7 @@ public Action Command_OfflineSprayban(int client, int args) {
 		return Plugin_Handled;
 	}
 
-	
+
 	char authp1[MAX_STEAMAUTH_LENGTH];
 	GetCmdArg(1, authp1, MAX_STEAMAUTH_LENGTH);
 
@@ -1751,7 +1752,7 @@ public void AdminMenu_RemoveAllSprays(TopMenu hTopMenu, TopMenuAction action, To
 		}
 		case TopMenuAction_SelectOption: {
 			Command_RemoveAllSprays(param, 0);
-			g_hAdminMenu.Display(param, TopMenuPosition_LastCategory);			
+			g_hAdminMenu.Display(param, TopMenuPosition_LastCategory);
 		}
 	}
 }
@@ -1851,7 +1852,7 @@ public int MenuHandler_AdminSpray(Menu menu, MenuAction action, int param1, int 
 				GoSpray(param1, target);
 			}
 
-			DisplayAdminSprayMenu(param1, GetMenuSelectionPosition());
+			DisplayAdminSprayMenu(param1, menu.Selection);
 		}
 		case MenuAction_Cancel: {
 			if (param2 == MenuCancel_ExitBack && g_hAdminMenu != null) {
@@ -2180,7 +2181,7 @@ public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int client, int 
 
 				PrintToChat(client, "[SSH] %T", "Spray Removed", client, szSprayerName, szSprayerID, szAdminName);
 				LogAction(client, -1, "[SSH] %T", "Spray Removed", LANG_SERVER, szSprayerName, szSprayerID, szAdminName);
-			}			
+			}
 		}
 		case MenuAction_Cancel: {
 			if (itemNum == MenuCancel_ExitBack) {
@@ -2312,7 +2313,7 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
 			else {
 				PrintToChat(client, "\x04[SSH] %T", "Could Not Find Name ID", client, szSprayerName, szSprayerID);
 				LogAction(client, -1, "[SSH] %T", "Could Not Find Name ID", LANG_SERVER, szSprayerName, szSprayerID);
-			}			
+			}
 		}
 		case MenuAction_Cancel: {
 			if (itemNum == MenuCancel_ExitBack) {
@@ -2366,7 +2367,7 @@ public void DisplayConfirmMenu(int client, int target, int type) {
 			menu.AddItem(info, "Yes!");
 			menu.AddItem("-1", "No!");
 
-			menu.Display(client, MENU_TIME_FOREVER);			
+			menu.Display(client, MENU_TIME_FOREVER);
 		}
 	}
 }
