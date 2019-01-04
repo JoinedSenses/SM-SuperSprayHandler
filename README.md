@@ -87,10 +87,13 @@ https://forums.alliedmods.net/showthread.php?t=281488
 
 #### SqLite:  
 ```
-    "ssh"
+	"ssh"
     {
-        "driver"      "sqlite"
-        "database"     "ssh"
+        "driver"        "sqlite"
+        "host"			"localhost"
+        "database"		"ssh"
+        "user"			"root"
+        "password"		""
     }
 ```
 
