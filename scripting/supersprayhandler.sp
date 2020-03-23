@@ -1517,13 +1517,12 @@ public int Native_IsBanned(Handle plugin, int numParams) {
 
 //sm_spray_refresh handlers for tracing to HUD or hint message
 public void TimerChanged(ConVar hConVar, const char[] szOldValue, const char[] szNewValue) {
+	delete g_hSprayTimer;
 	CreateTimers();
 }
 
 //Now we make the timers, and start them up.
 stock void CreateTimers() {
-	delete g_hSprayTimer;
-
 	float timer = g_arrCVars[REFRESHRATE].FloatValue;
 
 	if (timer > 0.0) {
