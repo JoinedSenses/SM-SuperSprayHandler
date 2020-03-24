@@ -12,7 +12,7 @@
 
 
 //Used to easily access my cvars out of an array.
-#define PLUGIN_VERSION "1.3.2"
+#define PLUGIN_VERSION "1.3.3"
 enum {
 	  ENABLED = 0
 	, ANTIOVERLAP
@@ -1710,17 +1710,12 @@ public Action Command_RemoveAllSprays(int client, int args) {
 		SprayDecal(i, 0, vecEndPos);
 
 		g_fSprayVector[i] = ZERO_VECTOR;
-
-		PrintToChat(client, "[SSH] %T", "Sprays Removed", client, szAdminName);
-		LogAction(client, -1, "[SSH] %T", "Sprays Removed", LANG_SERVER, szAdminName);
-
-		return Plugin_Handled;
 	}
 
-	PrintToChat(client, "[SSH] %T", "No Sprays", client);
+	PrintToChat(client, "[SSH] %T", "Sprays Removed", client, szAdminName);
+	LogAction(client, -1, "[SSH] %T", "Sprays Removed", LANG_SERVER, szAdminName);
 
 	return Plugin_Handled;
-
 }
 
 //Admin Menu handler for the RemoveAll Selection
