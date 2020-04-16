@@ -89,11 +89,11 @@ https://forums.alliedmods.net/showthread.php?t=281488
 ```
     "ssh"
     {
-        "driver"        "sqlite"
-        "host"			"localhost"
-        "database"		"ssh"
-        "user"			"root"
-        "password"		""
+        "driver"      "sqlite"
+        "host"        "localhost"
+        "database"    "ssh"
+        "user"        "root"
+        "pass"        ""
     }
 ```
 
