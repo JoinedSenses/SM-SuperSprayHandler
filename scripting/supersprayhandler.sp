@@ -12,7 +12,7 @@
 
 
 //Used to easily access my cvars out of an array.
-#define PLUGIN_VERSION "1.3.3"
+#define PLUGIN_VERSION "1.3.4"
 enum {
 	  ENABLED = 0
 	, ANTIOVERLAP
@@ -1807,10 +1807,6 @@ void DisplayAdminSprayMenu(int client, int iPos = 0) {
 
 //Menu Handler for the admin spray selection menu
 public int MenuHandler_AdminSpray(Menu menu, MenuAction action, int param1, int param2) {
-	if (!IsValidClient(param1)) {
-		return;
-	}
-
 	switch (action) {
 		case MenuAction_Select: {
 			char info[32];
@@ -1906,9 +1902,9 @@ public void SprayDecal(int client, int entIndex, float vecPos[3]) {
  ******************************************************************************************/
 
 //Called to open the punishment menu.
-public Action PunishmentMenu(int client, int sprayer) {
+void PunishmentMenu(int client, int sprayer) {
 	if (!IsValidClient(client)) {
-		return Plugin_Handled;
+		return;
 	}
 
 	g_arrMenuSprayID[client] = g_arrSprayID[sprayer];
@@ -2017,11 +2013,11 @@ public Action PunishmentMenu(int client, int sprayer) {
 	hMenu.ExitBackButton = true;
 	hMenu.Display(client, MENU_TIME_FOREVER);
 
-	return Plugin_Handled;
+	return;
 }
 
 //Handler for the Punishment Menu
-public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int client, int itemNum) {
+public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int param1, int param2) {
 	switch (action) {
 		case MenuAction_Select: {
 			char szInfo[32];
@@ -2030,126 +2026,126 @@ public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int client, int 
 			char szAdminName[MAX_NAME_LENGTH];
 			int sprayer;
 
-			szSprayerID = g_arrMenuSprayID[client];
-			sprayer = GetClientFromAuthID(g_arrMenuSprayID[client]);
+			szSprayerID = g_arrMenuSprayID[param1];
+			sprayer = GetClientFromAuthID(g_arrMenuSprayID[param1]);
 			szSprayerName = g_arrSprayName[sprayer];
-			GetClientName(client, szAdminName, sizeof(szAdminName));
-			hMenu.GetItem(itemNum, szInfo, sizeof(szInfo));
+			GetClientName(param1, szAdminName, sizeof(szAdminName));
+			hMenu.GetItem(param2, szInfo, sizeof(szInfo));
 
 			//If you selected to ban someone, we arent going to run the rest of this, calls the ban times menu.
 			if (strcmp(szInfo, "ban") == 0) {
-				DisplayBanTimesMenu(client);
+				DisplayBanTimesMenu(param1);
 			}
 			//Guess you selected not to ban someone, so now we do this stuff.
 			else if (sprayer && IsClientInGame(sprayer)) {
 				AdminId sprayerAdmin = GetUserAdmin(sprayer);
-				AdminId clientAdmin = GetUserAdmin(client);
+				AdminId clientAdmin = GetUserAdmin(param1);
 
 				//Uh Oh. You can't target this person. Now they're going to kill you.
 				if (((sprayerAdmin != INVALID_ADMIN_ID) && (clientAdmin != INVALID_ADMIN_ID)) && g_arrCVars[IMMUNITY].BoolValue && !clientAdmin.CanTarget(sprayerAdmin)) {
-					PrintToChat(client, "\x04[SSH] %T", "Admin Immune", client, szSprayerName);
-					LogAction(client, -1, "[SSH] %T", "Admin Immune Log", LANG_SERVER, szAdminName, szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Admin Immune", param1, szSprayerName);
+					LogAction(param1, -1, "[SSH] %T", "Admin Immune Log", LANG_SERVER, szAdminName, szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//Wag that finger at them. You're doing good.
 				else if (strcmp(szInfo, "warn") == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Warned", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Warned", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					PunishmentMenu(param1, sprayer);
 				}
 				//SMACK! SLAP THAT HOE INTO THE NEXT DIMENSION.
 				else if (strcmp(szInfo, "slap") == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Slapped And Warned", client, szSprayerName, szSprayerID, g_arrCVars[SLAPDMG].IntValue);
-					LogAction(client, -1, "[SSH] %T", "Log Slapped And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, g_arrCVars[SLAPDMG].IntValue);
+					PrintToChat(param1, "\x04[SSH] %T", "Slapped And Warned", param1, szSprayerName, szSprayerID, g_arrCVars[SLAPDMG].IntValue);
+					LogAction(param1, -1, "[SSH] %T", "Log Slapped And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, g_arrCVars[SLAPDMG].IntValue);
 					SlapPlayer(sprayer, g_arrCVars[SLAPDMG].IntValue);
-					PunishmentMenu(client, sprayer);
+					PunishmentMenu(param1, sprayer);
 				}
 				//Now they're dead...>.>
 				else if (strcmp(szInfo, "slay") == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Slayed And Warned", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Slayed And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_slay \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Slayed And Warned", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Slayed And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_slay \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//You get to watch them scream in agony :D
 				else if (strcmp(szInfo, "burn") == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Burnt And Warned", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Burnt And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_burn \"%s\" %d", szSprayerName, g_arrCVars[BURNTIME].IntValue);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Burnt And Warned", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Burnt And Warned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_burn \"%s\" %d", szSprayerName, g_arrCVars[BURNTIME].IntValue);
+					PunishmentMenu(param1, sprayer);
 				}
 				//All of a sudden. Their legs don't work anymore. odd.
 				else if (strcmp(szInfo, "freeze", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Froze", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Froze", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_freeze \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Froze", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Froze", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_freeze \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//BEEP. BEEP. BEEP. Now the whole server knows where they are.
 				else if (strcmp(szInfo, "beacon", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Beaconed", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Beaconed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_beacon \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "Beaconed", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Beaconed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_beacon \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//Their legs and anyone's legs around them are magically going to stop working in like....10 seconds...
 				else if (strcmp(szInfo, "freezebomb", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "FreezeBombed", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log FreezeBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_freezebomb \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "FreezeBombed", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log FreezeBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_freezebomb \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//Now this is just cruel. You're going to hurt other people too....
 				else if (strcmp(szInfo, "firebomb", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "FireBombed", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log FireBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_firebomb \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "FireBombed", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log FireBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_firebomb \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//This is just horrible. You're straight murdering other people too...
 				else if (strcmp(szInfo, "timebomb", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "TimeBombed", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log TimeBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_timebomb \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					PrintToChat(param1, "\x04[SSH] %T", "TimeBombed", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log TimeBombed", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_timebomb \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//Slip something into their drink?
 				else if (strcmp(szInfo, "drug", false) == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					PrintToChat(client, "\x04[SSH] %T", "Drugged", client, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Drugged", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					PrintToChat(param1, "\x04[SSH] %T", "Drugged", param1, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Drugged", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
 					CreateTimer(g_arrCVars[DRUGTIME].FloatValue, Undrug, sprayer, TIMER_FLAG_NO_MAPCHANGE);
-					ClientCommand(client, "sm_drug \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					ClientCommand(param1, "sm_drug \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 				//GTFO
 				else if (strcmp(szInfo, "kick") == 0) {
 					KickClient(sprayer, "%T", "Bad Spray Logo", sprayer);
 					PrintToChatAll("\x03[SSH] %T", "Kicked", LANG_SERVER, szSprayerName, szSprayerID);
-					LogAction(client, -1, "[SSH] %T", "Log Kicked", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					LogAction(param1, -1, "[SSH] %T", "Log Kicked", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
 				}
 				//No more spraying for you :)
 				else if (strcmp(szInfo, "spban") == 0) {
 					PrintToChat(sprayer, "\x03[SSH] %T", "Please change", sprayer);
-					//PrintToChat(client, "\x04[SSH] %T", "SPBanned", client, szSprayerName, szSprayerID);
-					//LogAction(client, -1, "[SSH] %T", "Log SPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
-					ClientCommand(client, "sm_sprayban \"%s\"", szSprayerName);
-					PunishmentMenu(client, sprayer);
+					//PrintToChat(param1, "\x04[SSH] %T", "SPBanned", param1, szSprayerName, szSprayerID);
+					//LogAction(param1, -1, "[SSH] %T", "Log SPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+					ClientCommand(param1, "sm_sprayban \"%s\"", szSprayerName);
+					PunishmentMenu(param1, sprayer);
 				}
 			}
 			//Nice. That's not a person.
 			else {
-				PrintToChat(client, "\x04[SSH] %T", "Could Not Find Name ID", client, szSprayerName, szSprayerID);
-				LogAction(client, -1, "[SSH] %T", "Could Not Find Name ID", LANG_SERVER, szSprayerName, szSprayerID);
+				PrintToChat(param1, "\x04[SSH] %T", "Could Not Find Name ID", param1, szSprayerName, szSprayerID);
+				LogAction(param1, -1, "[SSH] %T", "Could Not Find Name ID", LANG_SERVER, szSprayerName, szSprayerID);
 			}
 
 			//If you want to auto-remove their spray after punishing, this does it.
@@ -2157,13 +2153,13 @@ public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int client, int 
 				float vecEndPos[3];
 				SprayDecal(sprayer, 0, vecEndPos);
 
-				PrintToChat(client, "[SSH] %T", "Spray Removed", client, szSprayerName, szSprayerID, szAdminName);
-				LogAction(client, -1, "[SSH] %T", "Spray Removed", LANG_SERVER, szSprayerName, szSprayerID, szAdminName);
+				PrintToChat(param1, "[SSH] %T", "Spray Removed", param1, szSprayerName, szSprayerID, szAdminName);
+				LogAction(param1, -1, "[SSH] %T", "Spray Removed", LANG_SERVER, szSprayerName, szSprayerID, szAdminName);
 			}
 		}
 		case MenuAction_Cancel: {
-			if (itemNum == MenuCancel_ExitBack) {
-				RedisplayAdminMenu(g_hAdminMenu, client);
+			if (param2 == MenuCancel_ExitBack) {
+				RedisplayAdminMenu(g_hAdminMenu, param1);
 			}
 		}
 		case MenuAction_End: {
@@ -2177,7 +2173,7 @@ public int PunishmentMenuHandler(Menu hMenu, MenuAction action, int client, int 
  ******************************************************************************************/
 
 //Called to display the list of ban times.
-public void DisplayBanTimesMenu(int client) {
+void DisplayBanTimesMenu(int client) {
 	char szSprayerName[MAX_NAME_LENGTH];
 	char szSprayerID[32];
 	char szAdminName[MAX_NAME_LENGTH];
@@ -2217,22 +2213,25 @@ public void DisplayBanTimesMenu(int client) {
 }
 
 //Handler for the ban times menu
-public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int itemNum) {
-	char szInfo[32];
-	char szSprayerName[MAX_NAME_LENGTH];
-	char szSprayerID[32];
-	char szAdminName[MAX_NAME_LENGTH];
-	int sprayer;
-
-	szSprayerID = g_arrMenuSprayID[client];
-	sprayer = GetClientFromAuthID(g_arrMenuSprayID[client]);
-	szSprayerName = g_arrSprayName[sprayer];
-	GetClientName(client, szAdminName, sizeof(szAdminName));
-	hMenu.GetItem(itemNum, szInfo, sizeof(szInfo));
-
+public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int param1, int param2) {
 	switch (action) {
 		case MenuAction_Select: {
+			char szSprayerID[32];
+			szSprayerID = g_arrMenuSprayID[param1];
+			int sprayer = GetClientFromAuthID(g_arrMenuSprayID[param1]);
+			char szSprayerName[MAX_NAME_LENGTH];
+			szSprayerName = g_arrSprayName[sprayer];
+
 			if (sprayer) {
+				char szInfo[32];
+				char szAdminName[MAX_NAME_LENGTH];
+
+				szSprayerID = g_arrMenuSprayID[param1];
+				sprayer = GetClientFromAuthID(g_arrMenuSprayID[param1]);
+				szSprayerName = g_arrSprayName[sprayer];
+				GetClientName(param1, szAdminName, sizeof(szAdminName));
+				hMenu.GetItem(param2, szInfo, sizeof(szInfo));
+
 				int iTime = StringToInt(szInfo);
 				char szBad[128];
 				Format(szBad, 127, "%T", "Bad Spray Logo", LANG_SERVER);
@@ -2241,13 +2240,13 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
 
 				//SourceBans integration
 				if (g_hExternalBan != null) {
-					ClientCommand(client, "sm_ban #%d %d \"%s\"", GetClientUserId(sprayer), iTime, szBad);
+					ClientCommand(param1, "sm_ban #%d %d \"%s\"", GetClientUserId(sprayer), iTime, szBad);
 
 					if (iTime == 0) {
-						LogAction(client, -1, "[SSH] %T", "EPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, "SourceBans");
+						LogAction(param1, -1, "[SSH] %T", "EPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, "SourceBans");
 					}
 					else {
-						LogAction(client, -1, "[SSH] %T", "EBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime, "SourceBans");
+						LogAction(param1, -1, "[SSH] %T", "EBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime, "SourceBans");
 					}
 
 					delete g_hExternalBan;
@@ -2257,13 +2256,13 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
 
 					//MySQL Bans integration
 					if (g_hExternalBan != null) {
-						ClientCommand(client, "mysql_ban #%d %d \"%s\"", GetClientUserId(sprayer), iTime, szBad);
+						ClientCommand(param1, "mysql_ban #%d %d \"%s\"", GetClientUserId(sprayer), iTime, szBad);
 
 						if (iTime == 0) {
-							LogAction(client, -1, "[SSH] %T", "EPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, "MySQL Bans");
+							LogAction(param1, -1, "[SSH] %T", "EPBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, "MySQL Bans");
 						}
 						else {
-							LogAction(client, -1, "[SSH] %T", "EBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime, "MySQL Bans");
+							LogAction(param1, -1, "[SSH] %T", "EBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime, "MySQL Bans");
 						}
 
 						delete g_hExternalBan;
@@ -2273,10 +2272,10 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
 						BanClient(sprayer, iTime, BANFLAG_AUTHID, szBad, szBad);
 
 						if (iTime == 0) {
-							LogAction(client, -1, "[SSH] %T", "PBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
+							LogAction(param1, -1, "[SSH] %T", "PBanned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID);
 						}
 						else {
-							LogAction(client, -1, "[SSH] %T", "Banned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime);
+							LogAction(param1, -1, "[SSH] %T", "Banned", LANG_SERVER, szAdminName, szSprayerName, szSprayerID, iTime);
 						}
 					}
 				}
@@ -2289,13 +2288,13 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
 				}
 			}
 			else {
-				PrintToChat(client, "\x04[SSH] %T", "Could Not Find Name ID", client, szSprayerName, szSprayerID);
-				LogAction(client, -1, "[SSH] %T", "Could Not Find Name ID", LANG_SERVER, szSprayerName, szSprayerID);
+				PrintToChat(param1, "\x04[SSH] %T", "Could Not Find Name ID", param1, szSprayerName, szSprayerID);
+				LogAction(param1, -1, "[SSH] %T", "Could Not Find Name ID", LANG_SERVER, szSprayerName, szSprayerID);
 			}
 		}
 		case MenuAction_Cancel: {
-			if (itemNum == MenuCancel_ExitBack) {
-				PunishmentMenu(client, sprayer);
+			if (param2 == MenuCancel_ExitBack) {
+				PunishmentMenu(param1, GetClientFromAuthID(g_arrMenuSprayID[param1]));
 			}
 		}
 		case MenuAction_End: {
@@ -2309,7 +2308,7 @@ public int MenuHandler_BanTimes(Menu hMenu, MenuAction action, int client, int i
  ******************************************************************************************/
 
  //Called to display the Yes/No Menu for confirming your actions
-public void DisplayConfirmMenu(int client, int target, int type) {
+void DisplayConfirmMenu(int client, int target, int type) {
 	if (!IsValidClient(client)) {
 		return;
 	}
@@ -2347,23 +2346,24 @@ public void DisplayConfirmMenu(int client, int target, int type) {
 }
 
 //Menu Handler for confirming spraybanning someone.
-public int MenuHandler_SprayBanConf(Menu hMenu, MenuAction action, int client, int itemNum) {
-	char info[8];
-	hMenu.GetItem(itemNum, info, sizeof info);
-	int choice = StringToInt(info);
-
+public int MenuHandler_SprayBanConf(Menu hMenu, MenuAction action, int param1, int param2) {
 	switch (action) {
 		case MenuAction_Select: {
-			if (choice == -1) {
-				PunishmentMenu(client, choice);
-			}
-			else {
-				RunSprayBan(client, choice);
+			char info[8];
+			hMenu.GetItem(param2, info, sizeof info);
+			int choice = StringToInt(info);
+			// Some stupid shit going on here. choice shouldnt be -1 because it would be used for an index
+// 			if (choice == -1) {
+// 				PunishmentMenu(param1, choice);
+// 			}
+// 			else {
+			if (choice != -1) {
+				RunSprayBan(param1, choice);
 			}
 		}
 		case MenuAction_Cancel: {
-			if (itemNum == MenuCancel_ExitBack) {
-				PunishmentMenu(client, choice);
+			if (param2 == MenuCancel_ExitBack) {
+				PunishmentMenu(param1, 0);
 			}
 		}
 		case MenuAction_End: {
@@ -2373,23 +2373,24 @@ public int MenuHandler_SprayBanConf(Menu hMenu, MenuAction action, int client, i
 }
 
 //Menu Handler for confirming un-spraybanning someone.
-public int MenuHandler_UnSprayBanConf(Menu hMenu, MenuAction action, int client, int itemNum) {
-	char info[8];
-	hMenu.GetItem(itemNum, info, sizeof info);
-	int choice = StringToInt(info);
-
+public int MenuHandler_UnSprayBanConf(Menu hMenu, MenuAction action, int param1, int param2) {
 	switch (action) {
 		case MenuAction_Select: {
-			if (choice == -1) {
-				PunishmentMenu(client, choice);
-			}
-			else {
-				RunUnSprayBan(client, choice);
+			char info[8];
+			hMenu.GetItem(param2, info, sizeof info);
+			int choice = StringToInt(info);
+			// Some stupid shit going on here. choice shouldnt be -1 because it would be used for an index
+// 			if (choice == -1) {
+// 				PunishmentMenu(param1, choice);
+// 			}
+// 			else {
+			if (choice != -1) {
+				RunSprayBan(param1, choice);
 			}
 		}
 		case MenuAction_Cancel: {
-			if (itemNum == MenuCancel_ExitBack) {
-				PunishmentMenu(client, choice);
+			if (param2 == MenuCancel_ExitBack) {
+				PunishmentMenu(param1, 0);
 			}
 		}
 		case MenuAction_End: {
