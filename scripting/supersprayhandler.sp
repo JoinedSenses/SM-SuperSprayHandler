@@ -2385,7 +2385,7 @@ public int MenuHandler_UnSprayBanConf(Menu hMenu, MenuAction action, int param1,
 // 			}
 // 			else {
 			if (choice != -1) {
-				RunSprayBan(param1, choice);
+				RunUnSprayBan(param1, choice);
 			}
 		}
 		case MenuAction_Cancel: {
