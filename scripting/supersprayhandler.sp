@@ -14,33 +14,33 @@
 //Used to easily access my cvars out of an array.
 #define PLUGIN_VERSION "1.3.4"
 enum {
-	  ENABLED = 0
-	, ANTIOVERLAP
-	, AUTH
-	, MAXDIS
-	, REFRESHRATE
-	, USEBAN
-	, BURNTIME
-	, SLAPDMG
-	, USESLAY
-	, USEBURN
-	, USEPBAN
-	, USEKICK
-	, USEFREEZE
-	, USEBEACON
-	, USEFREEZEBOMB
-	, USEFIREBOMB
-	, USETIMEBOMB
-	, USESPRAYBAN
-	, DRUGTIME
-	, AUTOREMOVE
-	, RESTRICT
-	, IMMUNITY
-	, GLOBAL
-	, LOCATION
-	, HUDTIME
-	, CONFIRMACTIONS
-	, NUMCVARS
+	ENABLED = 0,
+	ANTIOVERLAP,
+	AUTH,
+	MAXDIS,
+	REFRESHRATE,
+	USEBAN,
+	BURNTIME,
+	SLAPDMG,
+	USESLAY,
+	USEBURN,
+	USEPBAN,
+	USEKICK,
+	USEFREEZE,
+	USEBEACON,
+	USEFREEZEBOMB,
+	USEFIREBOMB,
+	USETIMEBOMB,
+	USESPRAYBAN,
+	DRUGTIME,
+	AUTOREMOVE,
+	RESTRICT,
+	IMMUNITY,
+	GLOBAL,
+	LOCATION,
+	HUDTIME,
+	CONFIRMACTIONS,
+	NUMCVARS
 }
 
 #define MAX_CONNECTIONS 5
@@ -556,7 +556,7 @@ public void sqlQuery_CheckBan(Database db, DBResultSet results, const char[] err
  ******************************************************************************************/
 
  //When a player trys to spray a decal.
-public Action Player_Decal(const char[] name, const clients[], int count, float delay) {
+public Action Player_Decal(const char[] name, const int[] clients, int count, float delay) {
 	//Is this plugin enabled? If not then no need to run the rest of this.
 	if (!g_arrCVars[ENABLED].BoolValue) {
 		return Plugin_Continue;
