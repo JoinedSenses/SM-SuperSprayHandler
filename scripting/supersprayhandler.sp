@@ -12,7 +12,7 @@
 
 
 //Used to easily access my cvars out of an array.
-#define PLUGIN_VERSION "1.3.4"
+#define PLUGIN_VERSION "1.3.5"
 enum {
 	ENABLED = 0,
 	ANTIOVERLAP,
@@ -394,7 +394,7 @@ void ClearHud(int client, int hudType, float gameTime) {
 bool UserCanTarget(int client, int target)
 {
 	AdminId clientAdm = GetUserAdmin(client);
-	if(clientAdm != INVALID_ADMIN_ID) {
+	if (clientAdm != INVALID_ADMIN_ID) {
 		return clientAdm.CanTarget(GetUserAdmin(target));
 	}
 	return true;
@@ -731,7 +731,7 @@ public Action Command_Sprayban(int client, int args) {
 	if (target == -1) {
 		return Plugin_Handled;
 	}
-	if(!UserCanTarget(client, target)) {
+	if (!UserCanTarget(client, target)) {
 		return Plugin_Handled;
 	}
 
@@ -1314,9 +1314,9 @@ public Action Command_OfflineSprayban(int client, int args) {
 	}
 
 	AdminId targetAdm = FindAdminByIdentity("steam", auth);
-	if(targetAdm != INVALID_ADMIN_ID) {
+	if (targetAdm != INVALID_ADMIN_ID) {
 		AdminId clientAdm = GetUserAdmin(client);
-		if(!clientAdm.CanTarget(targetAdm)) {
+		if (!clientAdm.CanTarget(targetAdm)) {
 			return Plugin_Handled;
 		}
 	} 
@@ -1564,7 +1564,7 @@ public Action Command_TraceSpray(int client, int args) {
 
 	if (GetClientEyeEndLocation(client, vecPos)) {
 	 	for (int i = 1; i <= MaxClients; i++) {
-			if(!UserCanTarget(client, i)) {
+			if (!UserCanTarget(client, i)) {
 				continue;
 			}
 			if (GetVectorDistance(vecPos, g_fSprayVector[i]) <= g_arrCVars[MAXDIS].FloatValue) {
@@ -1618,7 +1618,7 @@ public Action Command_RemoveSpray(int client, int args) {
 		GetClientName(client, szAdminName, sizeof szAdminName);
 
 	 	for (int i = 1; i <= MaxClients; i++) {
-			if(!UserCanTarget(client, i)) {
+			if (!UserCanTarget(client, i)) {
 				continue;
 			}
 			if (GetVectorDistance(vecPos, g_fSprayVector[i]) <= g_arrCVars[MAXDIS].FloatValue) {
@@ -1678,7 +1678,7 @@ public Action Command_QuickRemoveSpray(int client, int args) {
 		GetClientName(client, szAdminName, sizeof szAdminName);
 
 	 	for (int i = 1; i <= MaxClients; i++) {
-			if(!UserCanTarget(client, i)) {
+			if (!UserCanTarget(client, i)) {
 				continue;
 			}
 			if (GetVectorDistance(vecPos, g_fSprayVector[i]) <= g_arrCVars[MAXDIS].FloatValue) {
@@ -1734,7 +1734,7 @@ public Action Command_RemoveAllSprays(int client, int args) {
 	GetClientName(client, szAdminName, sizeof szAdminName);
 
 	for (int i = 1; i <= MaxClients; i++) {
-		if(!UserCanTarget(client, i)) {
+		if (!UserCanTarget(client, i)) {
 			continue;
 		}
 		float vecEndPos[3];
@@ -1790,7 +1790,7 @@ public Action Command_AdminSpray(int client, int args) {
 			//ReplyToCommand(client, "[SSH] %T", "Could Not Find Name", client, arg);
 			return Plugin_Handled;
 		}
-		if(!UserCanTarget(client, target)) {
+		if (!UserCanTarget(client, target)) {
 			return Plugin_Handled;
 		}
 	}
@@ -1896,7 +1896,7 @@ public void AdminMenu_AdminSpray(TopMenu hTopMenu, TopMenuAction action, TopMenu
 
 //Called before SprayDecal() to receive a player's decal file and find where to spray it.
 public bool GoSpray(int client, int target) {
-	if(!UserCanTarget(client, target)) {
+	if (!UserCanTarget(client, target)) {
 		return false;
 	}
 	//Receives the player decal file.
@@ -1944,7 +1944,7 @@ void PunishmentMenu(int client, int sprayer) {
 	if (!IsValidClient(client)) {
 		return;
 	}
-	if(!UserCanTarget(client, sprayer)) {
+	if (!UserCanTarget(client, sprayer)) {
 		return;
 	}
 
