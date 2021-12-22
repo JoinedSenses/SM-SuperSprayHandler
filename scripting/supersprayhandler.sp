@@ -394,7 +394,7 @@ void ClearHud(int client, int hudType, float gameTime) {
 bool UserCanTarget(int client, int target)
 {
 	AdminId clientAdm = GetUserAdmin(client);
-	if (clientAdm != INVALID_ADMIN_ID) {
+	if (clientAdm != INVALID_ADMIN_ID && IsClientInGame(target)) {
 		return clientAdm.CanTarget(GetUserAdmin(target));
 	}
 	return true;
