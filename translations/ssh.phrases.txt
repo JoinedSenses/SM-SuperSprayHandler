@@ -273,11 +273,11 @@
 	}
 
 	//Punishment annoucement
-	//"{AdminName} permanently banned player {Name} ({SteamID}) for a bad spray logo with {External Ban Name}"
+	//"{AdminName} permanently banned player {Name} ({SteamID}) with {External Ban Name} for a bad spray logo"
 	"EPBanned"
 	{
 		"#format"		"{1:s},{2:s},{3:s},{4:s}"
-		"en"			"{1} permanently banned player {2} ({3}) for a bad spray logo with {4}"
+		"en"			"{1} permanently banned player {2} ({3}) with {4} for a bad spray logo"
 	}
 	
 	//Punishment annoucement
