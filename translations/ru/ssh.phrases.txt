@@ -4,7 +4,6 @@
 	//{Name} ({SteamID}). Last Logo sprayed {#Seconds}s ago.
 	"Title"
 	{
-		"#format"		"{1:s},{2:s},{3:d}"
 		"ru"			"{1} ({2}). Последний логотип нанесён {3}с назад."
 	}
 
@@ -23,7 +22,6 @@
 	//Punishment option
 	"SlapWarn"
 	{
-		"#format"		"{1:d}"
 		"ru"			"Шлёпнул и предупредил игрока на {1} урона"
 	}
 
@@ -37,7 +35,6 @@
 	//Burn Player for {#of Seconds} seconds
 	"BurnWarn"
 	{
-		"#format"		"{1:d}"
 		"ru"			"Поджег игрока на {1} секунд"
 	}
 
@@ -148,7 +145,6 @@
 	//Could not find player {Name} ({SteamID})
 	"Could Not Find Name ID"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Не удалось найти игрока {1} ({2})"
 	}
 
@@ -156,7 +152,6 @@
 	//Could not find player {Name}
 	"Could Not Find Name"
 	{
-		"#format"		"{1:s}"
 		"ru"			"Не удалось найти игрока {1}"
 	}
 
@@ -164,7 +159,6 @@
 	//Warned player {Name} ({SteamID})
 	"Warned"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Предупредил игрока {1} ({2})"
 	}
 
@@ -172,7 +166,6 @@
 	//Slapped and warned player {Name} ({SteamID}) for {#Damage} dmg
 	"Slapped And Warned"
 	{
-		"#format"		"{1:s},{2:s},{3:d}"
 		"ru"			"Шлёпнул и предупредил игрока {1} ({2}) на {3} урона"
 	}
 
@@ -180,7 +173,6 @@
 	//Slayed and warned player {Name} ({SteamID})
 	"Slayed And Warned"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Убил и предупредил игрока {1} ({2})"
 	}
 
@@ -188,7 +180,6 @@
 	//Burnt and warned player {Name} ({SteamID})
 	"Burnt And Warned"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Поджег и предупредил игрока {1} ({2})"
 	}
 
@@ -196,7 +187,6 @@
 	//Froze player {Name} ({SteamID})
 	"Froze"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Заморозил игрока {1} ({2})"
 	}
 
@@ -204,7 +194,6 @@
 	//Put a beacon on player {Name} ({SteamID})
 	"Beaconed"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Установил маяк на игрока {1} ({2})"
 	}
 
@@ -212,7 +201,6 @@
 	//Put a freeze bomb on player {Name} ({SteamID})
 	"FreezeBombed"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Установил замораживающую бомбу на игрока {1} ({2})"
 	}
 
@@ -220,7 +208,6 @@
 	//Put a fire bomb on player {Name} ({SteamID})
 	"FireBombed"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Установил огненную бомбу на игрока {1} ({2})"
 	}
 
@@ -228,7 +215,6 @@
 	//Put a time bomb on player {Name} ({SteamID})
 	"TimeBombed"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Установил бомбу с таймером на игрока {1} ({2})"
 	}
 
@@ -236,7 +222,6 @@
 	//Drugged player {1} ({2})
 	"Drugged"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Опьянил игрока {1} ({2})"
 	}
 
@@ -244,7 +229,6 @@
 	//Kicked player {Name} ({SteamID}) for a bad spray logo
 	"Kicked"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Выгнал игрока {1} ({2}) за плохой спрей"
 	}
 
@@ -252,7 +236,6 @@
 	//"{AdminName} banned player {Name} ({SteamID}) for {#Minutes} minutes for a bad spray logo"
 	"Banned"
 	{
-		"#format"		"{1:s},{2:s},{3:s},{4:d}"
 		"ru"			"{1} забанил игрока {2} ({3}) на {4} минут за плохой спрей"
 	}
 
@@ -260,7 +243,6 @@
 	//"{AdminName} banned player {Name} ({SteamID}) for {#Minutes} minutes with {External Ban Name} for a bad spray logo"
 	"EBanned"
 	{
-		"#format"		"{1:s},{2:s},{3:s},{4:d},{5:s}"
 		"ru"			"{1} забанил игрока {2} ({3}) на {4} минут с причиной {5} за плохой спрей"
 	}
 
@@ -268,7 +250,6 @@
 	//"{AdminName} permanently banned player {Name} ({SteamID}) for a bad spray logo"
 	"PBanned"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} навсегда забанил игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -276,7 +257,6 @@
 	//"{AdminName} permanently banned player {Name} ({SteamID}) for a bad spray logo with {External Ban Name}"
 	"EPBanned"
 	{
-		"#format"		"{1:s},{2:s},{3:s},{4:s}"
 		"ru"			"{1} навсегда забанил игрока {2} ({3}) за плохой спрей с причиной {4}"
 	}
 	
@@ -284,7 +264,6 @@
 	//"{AdminName} Spray banned player {Name} ({SteamID}) for a bad spray logo"
 	"SPBanned"
 	{
-		"#format"	"{1:s},{2:s},{3:s}"
 		"ru"	"{1} Забанил спрей игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -292,7 +271,6 @@
 	//Sprayed by: {Name} ({SteamID})
 	"Sprayed"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"Спрей игрока: {1} ({2})"
 	}
 
@@ -300,7 +278,6 @@
 	//Sprayed by: {Name}
 	"Sprayed Name"
 	{
-		"#format"		"{1:s}"
 		"ru"			"Спрей игрока: {1}"
 	}
 
@@ -308,7 +285,6 @@
 	//{AdminName} sprayed {Target}'s spray
 	"Admin Sprayed"
 	{
-		"#format"		"{1:N},{2:N}"
 		"ru"			"{1} нанёс спрей игрока {2}"
 	}
 
@@ -322,7 +298,6 @@
 	//Spray by {Name} ({SteamID}), {#Seconds}s ago.
 	"Spray By"
 	{
-		"#format"		"{1:s},{2:s},{3:d}"
 		"ru"			"Спрей игрока {1} ({2}), {3} секунд назад"
 	}
 
@@ -342,7 +317,6 @@
 	//Spray from {Name} ({SteamID}) has been removed by {AdminName}
 	"Spray Removed"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"Спрей игрока {1} ({2}) был удален игроком {3}"
 	}
 	
@@ -350,7 +324,6 @@
 	//All Sprays have been removed by {AdminName}.
 	"Sprays Removed"
 	{
-		"#format"		"{1:s}"
 		"ru"			"Все спреи были удалены игроком {1}"
 	}
 
@@ -358,7 +331,6 @@
 	//{AdminName} warned player {Name} ({SteamID})
 	"Log Warned"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} предупредил игрока {2} ({3})"
 	}
 
@@ -366,7 +338,6 @@
 	//{AdminName} slapped and warned player {Name} ({SteamID})
 	"Log Slapped And Warned"
 	{
-		"#format"		"{1:s},{2:s},{3:s},{4:d}"
 		"ru"			"{1} шлёпнул и предупредил игрока {2} ({3}) на {4} урона"
 	}
 
@@ -374,7 +345,6 @@
 	//{AdminName} slayed and warned player {Name} ({SteamID})
 	"Log Slayed And Warned"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} убил и предупредил игрока {2} ({3})"
 	}
 
@@ -382,7 +352,6 @@
 	//{AdminName} burnt and warned player {Name} ({SteamID})
 	"Log Burnt And Warned"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} поджег и предупредил игрока {2} ({3})"
 	}
 
@@ -390,7 +359,6 @@
 	//{AdminName} froze player {Name} ({SteamID}) for a bad spray logo
 	"Log Froze"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} заморозил игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -398,7 +366,6 @@
 	//{AdminName} put a beacon on player {Name} ({SteamID}) for a bad spray logo
 	"Log Beaconed"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} установил маяк на игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -406,7 +373,6 @@
 	//{AdminName} put a freeze bomb on player {Name} ({SteamID}) for a bad spray logo
 	"Log FreezeBombed"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} установил замораживающую бомбу на игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -414,7 +380,6 @@
 	//{AdminName} put a fire bomb on player {Name} ({SteamID}) for a bad spray logo
 	"Log FireBombed"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} установил огненную бомбу на игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -422,7 +387,6 @@
 	//{AdminName} put a time bomb on player {Name} ({SteamID}) for a bad spray logo
 	"Log TimeBombed"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} установил бомбу с таймером на игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -430,7 +394,6 @@
 	//{AdminName} drugged player {Name} ({SteamID}) for a bad spray logo
 	"Log Drugged"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} опьянил игрока {2} ({3}) за плохой спрей"
 	}
 
@@ -438,7 +401,6 @@
 	//{AdminName} kicked player {Name} ({SteamID}) for a bad spray logo
 	"Log Kicked"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} выгнал игрока {2} ({3}) за плохой спрей"
 	}
 	
@@ -446,7 +408,6 @@
 	//{AdminName} Spray Banned {Name} ({SteamID}) for a bad spray logo
 	"Log SPBanned"
 	{
-		"#format"		"{1:s},{2:s},{3:s}"
 		"ru"			"{1} Забанил спрей игрока {2} ({3}) за плохой спрей."
 	}
 
@@ -454,7 +415,6 @@
 	//{AdminName} tried to punish {OtherAdminName} but failed. {OtherAdminName} has higher immunity.
 	"Admin Immune Log"
 	{
-		"#format"		"{1:s},{2:s}"
 		"ru"			"{1} пытался наказать {2} но не удалось. {2} имеет высокий иммунитет."
 	}
 
@@ -462,7 +422,6 @@
 	//You tried to punish {OtherAdminName} but failed. {OtherAdminName} has higher immunity.
 	"Admin Immune"
 	{
-		"#format"		"{1:s}"
 		"ru"			"Вы пытались наказать {1} но не удалось. {1} имеет высокий иммунитет."
 	}
 }
